@@ -21,17 +21,33 @@ public class _00_ArrayCheatSheet {
 		}
 		
 		//6. make an array of 50 integers
-		//ArrayList<int> adder = new (int) ArrayList();
+		int lengh = 5;
+		int[] rnum = new int[lengh];
+		int min = 30;
+		int max = 0;
 		Random ran = new Random();
 		//7. use a for loop to make every value of the integer array a random number
-		for(int j = 0; j < 50; j++) {
-			int rn = ran.nextInt();
-			fivezero.(i);
+		for(int j = 0; j < lengh; j++) {
+			int rn = ran.nextInt(20);
+			rnum[j] = rn;
+			if(j != 0) {
+				if(rnum[j] < rnum[j-1]) {
+					if(min > rn) {
+					min = rn;
+					}
+				}
+				else if(rnum[j] > rnum[j-1]){
+					if(max < rn) {
+						max = rn;
+					}
+				}
+			}
 		}
 		//8. without printing the entire array, print only the smallest number in the array
-		
+		System.out.println(min);
 		//9 print the entire array to see if step 8 was correct
-		
+		System.out.println(Arrays.toString(rnum));
 		//10. print the largest number in the array.
+		System.out.println(max);
 	}
 }
