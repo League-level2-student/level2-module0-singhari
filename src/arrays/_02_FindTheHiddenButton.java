@@ -18,6 +18,8 @@ import javax.swing.JPanel;
 public class _02_FindTheHiddenButton implements ActionListener{
 	JFrame window;
 	JPanel panel;
+	Random ran;
+	int hiddenNum;
 	
 	//1. create an array of JButtons. Don't initialize it yet.
 	JButton[] rnum;
@@ -31,7 +33,7 @@ public class _02_FindTheHiddenButton implements ActionListener{
 		window = new JFrame("Find the Button");
 		panel = new JPanel();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+		ran = new Random();
 		//3.  Ask the user to enter a positive number and convert it to an int
 		String snum = JOptionPane.showInputDialog("Enter a positive number.");
 		int num = Integer.valueOf(snum);
@@ -57,14 +59,19 @@ public class _02_FindTheHiddenButton implements ActionListener{
 		//12. Give the user the instructions for the game.
 		JOptionPane.showMessageDialog(null, "Rule");
 		//13. initialize the hiddenButton variable to a random number less than the int created in step 3
-		int hiddenNum;
+		hiddenNum = ran.nextInt(num);
 		//14. Set the text of the JButton located at hiddenButton to  "ME"
-
+		rnum[hiddenNum].setText("ME");
 		//15. Use Thread.sleep(1000); to pause the program.
 		//    Surround it with a try/catch - use Eclipse helper for this
-		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//16. Set the text of the JButton located at hiddenButton to be blank.
-		
+		rnum[hiddenNum].setText(" ");
 	}
 
 	@Override
@@ -72,7 +79,12 @@ public class _02_FindTheHiddenButton implements ActionListener{
 		JButton buttonClicked = (JButton)e.getSource();
 		
 		//17. if the hiddenButton is clicked, tell the user that they win.
-		
+		if(buttonClicked == rnum[hiddenNum]) {
+			JOptionPane.showMessageDialog(null, "You win");
+		}
+		else {
+		JOptionPane.showMessageDialog(buttonClicked, "Try again");	
+		}
 		//18. else tell them to try again
 	}
 }
